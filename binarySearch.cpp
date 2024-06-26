@@ -6,7 +6,7 @@ int binarySearch(int l, int r, int e, vector<int> &vec){
     cout << l <<" " << r << endl;
     if(l>r)
         return -1;
-    int mid = l + (r - 1) / 2;
+    int mid = l + (r - l) / 2;
     if(vec[mid] == e)
         return mid;
     else if(vec[mid] > e)
