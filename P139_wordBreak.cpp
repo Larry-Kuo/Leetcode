@@ -1,21 +1,18 @@
 class Solution {
 public:
-    bool helper(string& s, unordered_set<string>& dict, vector<int>& dp, int start) {
-        if (start == s.length()) return true;
-        if (dp[start] != -1) return dp[start];
-        
-        for (int end = start + 1; end <= s.length(); end++) {
-            if (dict.find(s.substr(start, end - start)) != dict.end() && helper(s, dict, dp, end)) {
-                return dp[start] = 1;
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.size();
+        set<string> dict (wordDict.begin(), wordDict.end());
+        vector<bool> dp (n+1, false);
+        dp[0] = true;
+        for(int i = 1; i <= n; ++i){
+            for(int j = 0; j < i; ++j){
+                if(dp[j] && dict.find(s.substr(j, i - j)) != dict.end()){
+                    dp[i] = true;
+                    break;
+                }
             }
         }
-        
-        return dp[start] = 0;
-    }
-    
-    bool wordBreak(string s, vector<string>& wordDict) {
-        unordered_set<string> dict(wordDict.begin(), wordDict.end());
-        vector<int> dp(s.length(), -1);
-        return helper(s, dict, dp, 0);
+        return dp[n];
     }
 };
