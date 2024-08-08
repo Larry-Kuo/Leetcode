@@ -1,18 +1,4 @@
 class Solution {
-public:
-    string numberToWords(int num) {
-        if(num == 0)    return "Zero";
-
-        string ans;
-        vector<int> suffix {0, 1000, 1000000, 1000000000};
-        map<int, string> convert;
-        int cnt = 0;
-        convert = {
-            {0, ""},
-            {1, "One"},
-            {2, "Two"},
-            {3, "Three"},
-            {4, "Four"},
             {5, "Five"},
             {6, "Six"},
             {7, "Seven"},
